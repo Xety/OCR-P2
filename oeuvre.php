@@ -6,16 +6,18 @@
     // Si l'URL ne contient pas d'id, on redirige sur la page d'accueil
     if(empty($_GET['id'])) {
         header('Location: index.php');
+        exit;
     }
 
     $requete = $bdd->prepare("SELECT * FROM oeuvres WHERE id = :id");
-    $requete->bindValue(':id', intval($_GET['id']), PDO::PARAM_INT);
+    $requete->bindValue(':id', $_GET['id'], PDO::PARAM_INT);
     $requete->execute();
     $oeuvre = $requete->fetch();
 
     // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
     if(!$oeuvre) {
         header('Location: index.php');
+        exit;
     }
 ?>
 
