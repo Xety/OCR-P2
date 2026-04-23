@@ -38,3 +38,15 @@ $titre = htmlspecialchars($_POST['titre']);
 $description = htmlspecialchars($_POST['description']);
 $artiste = htmlspecialchars($_POST['artiste']);
 $image = htmlspecialchars($_POST['image']);
+
+require 'bdd.php';
+$bdd = connexion();
+$requete = $bdd->prepare("INSERT INTO oeuvres (titre, description, artiste, image) VALUES (:titre, :description, :artiste, :image)");
+$requete->execute([
+    ':titre' => $titre,
+    ':description' => $description,
+    ':artiste' => $artiste,
+    ':image' => $image,
+]);
+header('Location: oeuvre.php?id=' . $bdd->lastInsertId());
+exit;
