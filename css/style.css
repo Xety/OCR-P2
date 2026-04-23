@@ -114,6 +114,10 @@ form {
     margin-bottom: 25px;
 }
 
+.champ-erreur {
+    color: red;
+}
+
 form input, form textarea {
     padding: 7px;
 }
