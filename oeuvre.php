@@ -14,7 +14,7 @@
     $oeuvre = $requete->fetch();
 
     // Si aucune oeuvre trouvé, on redirige vers la page d'accueil
-    if(is_null($oeuvre) || empty($oeuvre)) {
+    if(!$oeuvre) {
         header('Location: index.php');
     }
 ?>
